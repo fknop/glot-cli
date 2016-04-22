@@ -1,0 +1,21 @@
+{
+  "name": "glot-cli",
+  "version": "1.0.2",
+  "description": "CLI tool for glot.io",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+   "glot": "./bin/glot.js"
+  },
+  "author": "Florian Knop",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "copy-paste": "^1.1.4",
+    "progress": "^1.1.8",
+    "superagent": "^1.8.3"
+  }
+}
