@@ -1,5 +1,8 @@
 # glot-cli
 
+[![NPM Version](https://img.shields.io/npm/v/glot-cli.svg)](https://npmjs.org/package/glot-cli)
+
+
 `glot-cli` is a CLI tool for [https://glot.io](https://glot.io). 
 
 ## Install
