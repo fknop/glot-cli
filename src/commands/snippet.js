@@ -8,7 +8,7 @@ module.exports.command = function (vorpal, action) {
         .option('-t, --title <title>', 'Snippet title')
         .option('-l, --language <language>', 'Snippet language')
         .option('-p, --private', 'Private snippet: requires token')
-        .option('-t, --token', 'API Token')
+        .option('-T, --token', 'API Token')
         .action(function (args, cb) {
               
             try {        
