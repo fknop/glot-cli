@@ -1,21 +1,30 @@
 {
   "name": "glot-cli",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "CLI tool for glot.io",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bin/glot.js"
   },
   "bin": {
-   "glot": "./bin/glot.js"
+    "glot": "./bin/glot.js"
   },
   "author": "Florian Knop",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fknop/glot-cli.git"
+  },
   "license": "MIT",
   "dependencies": {
     "commander": "^2.9.0",
     "copy-paste": "^1.1.4",
     "progress": "^1.1.8",
     "superagent": "^1.8.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/fknop/glot-cli/issues"
+  },
+  "homepage": "https://github.com/fknop/glot-cli#readme",
+  "devDependencies": {},
+  "keywords": []
 }
