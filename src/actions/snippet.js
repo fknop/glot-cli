@@ -3,13 +3,21 @@
 const Fs = require('fs');
 const Path = require('path');
 const Request = require('superagent');
-const SNIPPET_ENDPOINT = require('../constants').SNIPPET_ENDPOINT;
-const SNIPPET_WWW = require('../constants').SNIPPET_WWW;
-const EXTENSIONS = require('../constants').EXTENSIONS;
 const CopyPaste = require('copy-paste');
 
-const snippet = function (args, options) {
+const Constants = require('../constants');
+const SNIPPET_ENDPOINT = Constants.SNIPPET_ENDPOINT;
+const SNIPPET_WWW = Constants.SNIPPET_WWW;
+const EXTENSIONS = Constants.EXTENSIONS;
+
+const snippet = function (args, options, cb) {
    
+    if (!cb) {
+        throw new Error('Missing callback');
+    }
+    
+    args = args || [];
+    options = options || {};
     
     const files = [];
     args.forEach((file) => {
@@ -25,12 +33,13 @@ const snippet = function (args, options) {
            });
        } 
        catch (e) {
-           console.warn(`Cannot read file: ${file}, ignoring...`);
+           this.log(`Cannot read file: ${file}, ignoring...`);
        }
         
     });
     
     if (files.length === 0) {
+        this.log('No files found.')
         return;
     }
     
@@ -63,7 +72,7 @@ const snippet = function (args, options) {
            .end((err, res) => {
               
               if (err) {
-                  console.log(`Couldn't create snippet. Try again.`);
+                  this.log(`Couldn't create snippet. Try again.`);
                   return;
               }
               
@@ -72,10 +81,11 @@ const snippet = function (args, options) {
               
               CopyPaste.copy(url, () => {
                   
-                console.log(`${url} copied to clipboard`);
+                this.log(`${url} copied to clipboard`);
+                cb();
               });
            });
 
 }
 
-module.exports.snippet = snippet;
+module.exports.action = snippet;

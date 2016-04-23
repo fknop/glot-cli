@@ -6,6 +6,7 @@ module.exports = {
         'java': 'java',
         'scala': 'scala',
         'js': 'javascript',
+        'json': 'javascript',
         'c': 'c',
         'cpp': 'c++',
         'cs': 'c#',

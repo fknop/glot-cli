@@ -16,10 +16,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.9.0",
     "copy-paste": "^1.1.4",
     "progress": "^1.1.8",
-    "superagent": "^1.8.3"
+    "superagent": "^1.8.3",
+    "vorpal": "^1.10.10"
   },
   "bugs": {
     "url": "https://github.com/fknop/glot-cli/issues"
