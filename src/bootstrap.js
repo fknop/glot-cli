@@ -1,8 +1,12 @@
 'use strict';
 
+const Files = require('./utils/files');
 
 const commands = [
-    'snippet'
+    'catch',    // Fallback
+    'snippet',
+    'config-token',
+    'history'
 ];
 
 const commandsPath = './commands';
@@ -16,14 +20,14 @@ module.exports.bootstrap = function (vorpal) {
         const command = require(`${commandsPath}/${name}`).command;
         const action = require(`${actionsPath}/${name}`).action;
         command(vorpal, action);
-        
-        
-        // Exit is not used
-        const exit = vorpal.find('exit');
-        if (exit) {
-            exit.remove();
-        }
-        
-    });       
+    });      
+     
+    // Exit is not used
+    const exit = vorpal.find('exit');
+    if (exit) {
+        exit.remove();
+    }    
+    
     vorpal.parse(process.argv); 
 };
+

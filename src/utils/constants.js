@@ -1,6 +1,9 @@
 module.exports = {
     SNIPPET_ENDPOINT: 'https://snippets.glot.io/snippets',
     SNIPPET_WWW: 'https://glot.io/snippets',
+    GLOT_FOLDER: '.glot',
+    CONFIG_FILE: '.glotrc',
+    HISTORY_FILE: '.glothistory',
     EXTENSIONS: {
         'py': 'python',
         'java': 'java',

@@ -2,13 +2,17 @@
 
 const Fs = require('fs');
 const Path = require('path');
-const Request = require('superagent');
 const CopyPaste = require('copy-paste');
 
-const Constants = require('../constants');
+const Files = require('../utils/files');
+
+const Constants = require('../utils/constants');
 const SNIPPET_ENDPOINT = Constants.SNIPPET_ENDPOINT;
 const SNIPPET_WWW = Constants.SNIPPET_WWW;
 const EXTENSIONS = Constants.EXTENSIONS;
+
+
+const GlotApi = require('../utils/api');
 
 const snippet = function (args, options, cb) {
    
@@ -44,7 +48,7 @@ const snippet = function (args, options, cb) {
     }
     
     const data = {
-        title: options.title || 'Uploaded by CLI',
+        title: options.title || 'Uploaded by CLI (https://www.npmjs.com/package/glot-cli)',
         public: true,
         files: files
     };
@@ -66,25 +70,23 @@ const snippet = function (args, options, cb) {
         data.language = EXTENSIONS[key];
     }
     
-    Request.post(SNIPPET_ENDPOINT)
-           .set('Content-Type', 'application/json')
-           .send(data)
-           .end((err, res) => {
+    GlotApi.post(data, (err, res) => {
               
-              if (err) {
-                  this.log(`Couldn't create snippet. Try again.`);
-                  return;
-              }
-              
-              const id = res.body.id;
-              const url = `${SNIPPET_WWW}/${id}`;
-              
-              CopyPaste.copy(url, () => {
-                  
-                this.log(`${url} copied to clipboard`);
-                cb();
-              });
-           });
+        if (err) {
+            this.log(`Couldn't create snippet. Try again.`);
+            return;
+        }
+        
+        const id = res.body.id;
+        const url = `${SNIPPET_WWW}/${id}`;
+        
+        CopyPaste.copy(url, () => {
+            
+            this.log(`${url} copied to clipboard`);
+            Files.writeHistory(url);
+            cb();
+        });
+    });
 
 }
 
