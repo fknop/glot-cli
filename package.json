@@ -1,6 +1,6 @@
 {
   "name": "glot-cli",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "CLI tool for glot.io",
   "main": "index.js",
   "scripts": {
